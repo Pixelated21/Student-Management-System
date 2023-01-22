@@ -1,36 +1,29 @@
 import Spacer from 'src/components/Spacer';
-import { Assignment } from '@/typescript/interface';
+import { Assignment, Course } from '@/typescript/interface';
 
-const people = [
-	{
-		name: 'Lindsay Walton',
-		title: 'Front-end Developer',
-		email: 'lindsay.walton@example.com',
-		role: 'Member',
-	},
-];
-
-const getCourseAssignments = async (courseID: string) => {
-	console.log(process.env.INTERNAL_API_URL);
-
+const getCourse = async (courseID: string) => {
 	try {
 		const res = await fetch(
-			process.env.INTERNAL_API_URL + `/assignments/${courseID}`,
+			process.env.EXTERNAL_API_URL + `/courses/${courseID}`,
 		);
 		if (!res) {
-			// throw new Error('Faild To Fetch Assignments');
+			throw new Error('Failed To Fetch Course');
 		}
 		const respData = await res.json();
-		return respData.data.assignments;
+		return respData.data;
 	} catch {}
 };
 
-export default async function DepartmentCourseAssignmentsPage({ params }) {
-	const assignments: Assignment[] = await getCourseAssignments(
-		'96bd94f6-0552-39be-9b8a-4daccb7ed630',
-	);
-	console.log(assignments);
-	console.log(params);
+export default async function DepartmentCourseAssignmentsPage({
+	params,
+}: {
+	params: { courseID: string };
+}) {
+	const { courseID } = params;
+	const course: Course = await getCourse(courseID);
+	const assignments = course.relationships.assignments;
+
+	const filteredAssignments = assignments;
 	return (
 		<main>
 			<section>
@@ -69,7 +62,12 @@ export default async function DepartmentCourseAssignmentsPage({ params }) {
 										<th
 											scope='col'
 											className='py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6'>
-											Assignment Name
+											Name
+										</th>
+										<th
+											scope='col'
+											className='hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell'>
+											Type
 										</th>
 										<th
 											scope='col'
@@ -84,20 +82,23 @@ export default async function DepartmentCourseAssignmentsPage({ params }) {
 									</tr>
 								</thead>
 								<tbody className='divide-y divide-gray-200 bg-white'>
-									{assignments &&
-										assignments.map(assignment => (
-											<tr key={assignment._id}>
+									{filteredAssignments &&
+										filteredAssignments.map(assignment => (
+											<tr key={assignment.id}>
 												<td className='w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-6'>
-													{assignment.ass_name}
+													{assignment.attributes.name}
 													<dl className='font-normal lg:hidden'>
-														<dt className='sr-only sm:hidden'>Marks</dt>
+														<dt className='sr-only sm:hidden'>Mark</dt>
 														<dd className='mt-1 truncate text-gray-500 sm:hidden'>
-															{assignment.marks}
+															{assignment.attributes.mark}
 														</dd>
 													</dl>
 												</td>
 												<td className='hidden px-3 py-4 text-sm text-gray-500 lg:table-cell'>
-													{assignment.marks}
+													{assignment.relationships.type.attributes.name}
+												</td>
+												<td className='hidden px-3 py-4 text-sm text-gray-500 lg:table-cell'>
+													{assignment.attributes.mark}
 												</td>
 												<td className='py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6'>
 													<a
@@ -109,6 +110,15 @@ export default async function DepartmentCourseAssignmentsPage({ params }) {
 												</td>
 											</tr>
 										))}
+									{filteredAssignments.length === 0 && (
+										<tr>
+											<td
+												colSpan={3}
+												className='py-4 pl-4 pr-3 bg-gray-200 text-sm text-center font-medium text-gray-900 sm:pl-6'>
+												No Assignments found
+											</td>
+										</tr>
+									)}
 								</tbody>
 							</table>
 						</div>
