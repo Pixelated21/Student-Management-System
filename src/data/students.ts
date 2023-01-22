@@ -1,4 +1,4 @@
-import { Student } from '@/typescript/interface';
+import { Student, Course } from '@/typescript/interface';
 import { generateResponse } from '@/utils/generateResponse';
 import { faker } from '@faker-js/faker';
 
@@ -13,18 +13,23 @@ const data: StudentResponseData = {
 export const generateStudents = (amount: number) => {
 	for (let i = 0; i < amount; i++) {
 		const student: Student = {
-			_id: faker.datatype.uuid(),
-			s_id: faker.datatype.uuid(),
-			name: faker.name.fullName(),
-			section: faker.helpers.arrayElement(['A', 'B', 'C', 'D', 'E']),
-			email_id: faker.internet.email(),
-			profile_pic: faker.internet.avatar(),
-			c_id: faker.datatype.uuid(),
-			mobile: faker.phone.number('+1 876 ### ####'),
-			address: faker.address.streetAddress(),
-			status: faker.datatype.boolean(),
-			updated_at: faker.date.recent().getDate().toString(),
-			created_at: faker.date.recent().getDate().toString(),
+			id: faker.datatype.uuid(),
+			attributes: {
+				name: faker.name.fullName(),
+				section: faker.helpers.arrayElement(['A', 'B', 'C', 'D', 'E']),
+				email: faker.internet.email(),
+				course: faker.datatype.uuid(),
+				mobile: faker.phone.number('+1 876 ### ####'),
+				address: faker.address.streetAddress(),
+				status: faker.datatype.number({ min: 0, max: 2 }),
+				updated_at: faker.date.recent().getDate().toString(),
+				created_at: faker.date.recent().getDate().toString(),
+			},
+			relationships: {
+				course: null,
+				attendances: null,
+				assignments: null,
+			},
 		};
 
 		data.students.push(student);

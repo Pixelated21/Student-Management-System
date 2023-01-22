@@ -13,15 +13,23 @@ const data: AssignmentResponseData = {
 export const generateAssignments = (amount: number) => {
 	for (let i = 0; i < amount; i++) {
 		const assignment: Assignment = {
-			_id: faker.datatype.uuid(),
-			ass_id: faker.datatype.uuid(),
-			ass_name: faker.name.fullName(),
-			s_id: faker.datatype.uuid(),
-			c_id: faker.datatype.uuid(),
-			asst_id: faker.datatype.uuid(),
-			marks: faker.datatype.number({ min: 0, max: 100 }),
-			updated_at: faker.date.recent().toISOString(),
-			created_at: faker.date.recent().toISOString(),
+			id: faker.datatype.uuid(),
+			attributes: {
+				name: faker.name.fullName(),
+				mark: faker.datatype.number({ min: 0, max: 100 }),
+				updated_at: faker.date.recent().toISOString(),
+				created_at: faker.date.recent().toISOString(),
+			},
+			relationships: {
+				type: {
+					id: faker.datatype.uuid(),
+					attributes: {
+						name: faker.name.jobTitle(),
+						updated_at: faker.date.recent().toISOString(),
+						created_at: faker.date.recent().toISOString(),
+					},
+				},
+			},
 		};
 
 		data.assignments.push(assignment);

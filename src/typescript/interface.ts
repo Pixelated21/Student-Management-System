@@ -40,9 +40,9 @@ export interface Student {
 		updated_at: string;
 	};
 	relationships: {
-		course: unknown;
+		course: Course | null;
 		attendances: unknown;
-		assignments: unknown;
+		assignments: Assignment[] | null;
 	};
 }
 
@@ -55,7 +55,7 @@ export interface Assignment {
 		created_at: string;
 	};
 	relationships: {
-		type: AssignmentType;
+		type: AssignmentType | null;
 	};
 }
 
@@ -76,7 +76,7 @@ export interface Department {
 		created_at: string;
 	};
 	relationships: {
-		courses: Course[];
+		courses: Course[] | null;
 	};
 }
 
@@ -89,7 +89,7 @@ export interface Course {
 		created_at: string;
 	};
 	relationships: {
-		courses_type: unknown;
+		courses_type: unknown ;
 		department: Department;
 		students: Student[];
 		assignments: Assignment[];
