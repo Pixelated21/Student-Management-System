@@ -5,8 +5,6 @@ import { useSelectedLayoutSegment } from 'next/navigation';
 import { useState } from 'react';
 
 export default function Tabs({ data }: { data: ITab[] }) {
-	const [activeTab, setActiveTab] = useState<string>('');
-
 	const segment = useSelectedLayoutSegment();
 
 	function getCurrentSegment(href: string, limit: number, target: number) {
@@ -27,11 +25,18 @@ export default function Tabs({ data }: { data: ITab[] }) {
 							}`}>
 							{tab.title}
 						</span>
-						{getCurrentSegment(tab.href, 5, 4) === segment ? (
+
+						{tab.isActive ? (
+							<span className='bg-white h-2 w-full rounded-t'></span>
+						) : null}
+
+						{/* TODO: Make dynamic */}
+
+						{/* {getCurrentSegment(tab.href, 5, 4) === segment ? (
 							<span className='bg-white h-2 w-full rounded-t'></span>
 						) : getCurrentSegment(tab.href, 5, 4) === undefined ? (
 							<span className='bg-white h-2 w-full rounded-t'></span>
-						) : null}
+						) : null} */}
 					</div>
 				</Link>
 			))}

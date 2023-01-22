@@ -4,15 +4,9 @@ import Statistic from '@/components/Statistics';
 import Tabs from '@/components/Tabs';
 import { Cog8ToothIcon } from '@heroicons/react/24/outline';
 import React from 'react';
-import { Department, ILink, IStatistic, ITab } from '@/typescript/interface';
+import type { Department, ILink, IStatistic, ITab } from '@/typescript/interface';
 
 // TODO: Add dynamic UI Elements from api to replace this
-const statistics: IStatistic[] = [
-	// { id: 1, title: 'Students', value: 200 },
-	// { id: 2, title: 'Assignments', value: 130 },
-	// { id: 3, title: 'Attendance', value: 490 },
-	{ id: 4, title: 'Courses', value: 5 },
-];
 
 const getDepartment = async (departmentID: string) => {
 	const res = await fetch(
@@ -27,7 +21,7 @@ const getDepartment = async (departmentID: string) => {
 	return respData.data;
 };
 
-export default async function DepartmentIdLayout({
+export default async function DepartmentIdPage({
 	params,
 }: {
 	params: {
@@ -55,29 +49,19 @@ export default async function DepartmentIdLayout({
 			href: `/admin/departments/${department?.id}`,
 			isActive: true,
 		},
-		// {
-		// 	id: 2,
-		// 	title: `Students`,
-		// 	href: `/admin/departments/${department?.id}/students`,
-		// 	isActive: false,
-		// },
-		// {
-		// 	id: 3,
-		// 	title: `Assignments`,
-		// 	href: `/admin/departments/${department?.id}/assignments`,
-		// 	isActive: false,
-		// },
-		// {
-		// 	id: 4,
-		// 	title: `Attendance`,
-		// 	href: `/admin/departments/${department?.id}/attendances`,
-		// 	isActive: false,
-		// },
 		{
-			id: 4,
+			id: 2,
 			title: `Courses`,
 			href: `/admin/departments/${department?.id}/courses`,
 			isActive: false,
+		},
+	];
+
+	const statistics: IStatistic[] = [
+		{
+			id: 1,
+			title: 'Courses',
+			value: department?.relationships?.courses?.length ?? 0,
 		},
 	];
 
