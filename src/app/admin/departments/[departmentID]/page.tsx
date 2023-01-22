@@ -14,7 +14,7 @@ const getDepartment = async (departmentID: string) => {
 	);
 
 	if (!res) {
-		throw new Error('Faild To Fetch Department');
+		throw new Error('Failed To Fetch Department');
 	}
 
 	const respData = await res.json();
