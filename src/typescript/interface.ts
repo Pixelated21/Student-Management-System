@@ -50,12 +50,21 @@ export interface Assignment {
 	readonly id: string;
 	attributes: {
 		name: string;
-		marks: number;
+		mark: number;
 		updated_at: string;
 		created_at: string;
 	};
 	relationships: {
-		type: unknown;
+		type: AssignmentType;
+	};
+}
+
+export interface AssignmentType {
+	readonly id: string;
+	attributes: {
+		name: string;
+		updated_at: string;
+		created_at: string;
 	};
 }
 
@@ -65,6 +74,25 @@ export interface Department {
 		name: string;
 		updated_at: string;
 		created_at: string;
+	};
+	relationships: {
+		courses: Course[];
+	};
+}
+
+export interface Course {
+	readonly id: string;
+	attributes: {
+		name: string;
+		qualifications: unknown;
+		updated_at: string;
+		created_at: string;
+	};
+	relationships: {
+		courses_type: unknown;
+		department: Department;
+		students: Student[];
+		assignments: Assignment[];
 	};
 }
 
