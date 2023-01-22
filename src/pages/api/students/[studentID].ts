@@ -6,7 +6,7 @@ const getStudent = async (
 ): Promise<Student | undefined> => {
 	const res = await fetch('http://127.0.0.1:3000/api/students');
 	const students: Student[] = await res.json();
-	return students.find(student => student._id == studentID);
+	return students.find(student => student.id == studentID);
 };
 
 export default async function handler(

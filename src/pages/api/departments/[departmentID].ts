@@ -26,7 +26,7 @@ const internalDepartmentIDFetch = async (
 	}
 
 	let department: Department[] | Department = departments.filter(
-		department => department.dept_id === departmentID,
+		department => department.id === departmentID,
 	);
 
 	if (!department[0]) {
