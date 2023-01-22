@@ -9,7 +9,9 @@ export default function DepartmentAttendancesPage() {
 
 					<div className='flex justify-between items-center'>
 						<div>
-							<h1 className='font-semibold text-2xl text-gray-900'>Attendances</h1>
+							<h1 className='font-semibold text-2xl text-gray-900'>
+								Attendances
+							</h1>
 							<h3 className='text-sm  text-gray-700'>
 								{/* All Available Departments */}
 							</h3>
