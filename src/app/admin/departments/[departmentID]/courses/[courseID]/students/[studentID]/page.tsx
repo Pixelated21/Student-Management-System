@@ -11,8 +11,6 @@ const getStudent = async () => {
 
 	const respData = await res.json();
 
-	console.log(respData);
-
 	return respData.data;
 };
 
