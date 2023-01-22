@@ -28,7 +28,7 @@ export const generateStudents = (amount: number) => {
 			relationships: {
 				course: null,
 				attendances: null,
-				assignments: null,
+				assignments: [],
 			},
 		};
 

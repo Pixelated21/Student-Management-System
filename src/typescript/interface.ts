@@ -42,7 +42,7 @@ export interface Student {
 	relationships: {
 		course: Course | null;
 		attendances: unknown;
-		assignments: Assignment[] | null;
+		assignments: Assignment[];
 	};
 }
 
@@ -55,7 +55,7 @@ export interface Assignment {
 		created_at: string;
 	};
 	relationships: {
-		type: AssignmentType | null;
+		type: AssignmentType;
 	};
 }
 
