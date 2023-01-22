@@ -28,10 +28,8 @@ const getDepartment = async (departmentID: string) => {
 };
 
 export default async function DepartmentIdLayout({
-	children,
 	params,
 }: {
-	children: React.ReactNode;
 	params: {
 		departmentID: string;
 	};
