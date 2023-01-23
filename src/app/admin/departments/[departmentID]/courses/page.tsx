@@ -37,7 +37,7 @@ export default async function CoursePage({
 	const { departmentID } = params;
 	const department: Department = await getDepartment(departmentID);
 
-	const courses = department.relationships.courses;
+	const courses = department?.relationships?.courses;
 
 	const filteredCourses = courses;
 
@@ -141,12 +141,12 @@ export default async function CoursePage({
 							{filteredCourses &&
 								filteredCourses.map(course => (
 									<Link
-										href={`/admin/departments/${department.id}/courses/${course.id}`}
-										key={course.id}
+										href={`/admin/departments/${department?.id}/courses/${course?.id}`}
+										key={course?.id}
 										className='group'>
 										<div className='h-40 cursor-pointer bg-white border relative group-hover:bg-black duration-300'>
 											<p className='top-5 left-5 absolute group-hover:text-white duration-300 font-medium text-2xl'>
-												{course.attributes.name}
+												{course?.attributes?.name}
 											</p>
 											<span className='absolute top-5 right-5'>
 												<svg

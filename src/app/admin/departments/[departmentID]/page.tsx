@@ -4,7 +4,12 @@ import Statistic from '@/components/Statistics';
 import Tabs from '@/components/Tabs';
 import { Cog8ToothIcon } from '@heroicons/react/24/outline';
 import React from 'react';
-import type { Department, ILink, IStatistic, ITab } from '@/typescript/interface';
+import type {
+	Department,
+	ILink,
+	IStatistic,
+	ITab,
+} from '@/typescript/interface';
 
 // TODO: Add dynamic UI Elements from api to replace this
 
@@ -77,7 +82,7 @@ export default async function DepartmentIdPage({
 							<div>
 								<Spacer height='20px' />
 								<p className='text-5xl font-medium text-white'>
-									{department?.attributes.name ?? 'UNDEFIEND'}
+									{department?.attributes?.name ?? 'UNDEFIEND'}
 								</p>
 							</div>
 
