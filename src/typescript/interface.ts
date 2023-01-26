@@ -76,7 +76,16 @@ export interface Department {
 		created_at: string;
 	};
 	relationships: {
-		courses: Course[] | null;
+		courses: Course[];
+	};
+}
+
+export interface CourseType {
+	readonly id: string;
+	attributes: {
+		name: string;
+		updated_at: string;
+		created_at: string;
 	};
 }
 
@@ -89,7 +98,7 @@ export interface Course {
 		created_at: string;
 	};
 	relationships: {
-		courses_type: unknown ;
+		course_type: CourseType;
 		department: Department;
 		students: Student[];
 		assignments: Assignment[];
