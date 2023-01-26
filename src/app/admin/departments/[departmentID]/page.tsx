@@ -10,21 +10,9 @@ import type {
 	IStatistic,
 	ITab,
 } from '@/typescript/interface';
+import { getDepartment } from '@/utils/departmentsAPI';
 
-// TODO: Add dynamic UI Elements from api to replace this
-
-const getDepartment = async (departmentID: string) => {
-	const res = await fetch(
-		`http://127.0.0.1:3000/api/departments/${departmentID}`,
-	);
-
-	if (!res) {
-		throw new Error('Failed To Fetch Department');
-	}
-
-	const respData = await res.json();
-	return respData.data;
-};
+export const dynamic = 'force-dynamic';
 
 export default async function DepartmentIdPage({
 	params,
@@ -36,7 +24,6 @@ export default async function DepartmentIdPage({
 	const { departmentID } = params;
 	const department: Department = await getDepartment(departmentID);
 
-	// Dynamic UI Elements
 	const links: ILink[] = [
 		{ id: 1, title: 'Home', href: '/admin' },
 		{ id: 2, title: 'Department', href: '/admin/departments' },

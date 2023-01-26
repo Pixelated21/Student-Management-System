@@ -1,20 +1,8 @@
 import Spacer from 'src/components/Spacer';
 import { Assignment, Course } from '@/typescript/interface';
+import { getCourse, getCourses } from '@/utils/coursesAPI';
 
-const getCourse = async (courseID: string) => {
-	try {
-		const res = await fetch(
-			process.env.EXTERNAL_API_URL + `/courses/${courseID}`,
-		);
-		if (!res) {
-			throw new Error('Failed To Fetch Course');
-		}
-		const respData = await res.json();
-		return respData.data;
-	} catch {}
-};
-
-export default async function DepartmentCourseAssignmentsPage({
+export default async function AssignmentsPage({
 	params,
 }: {
 	params: { courseID: string };

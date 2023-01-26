@@ -1,4 +1,6 @@
 import Spacer from '@/components/Spacer';
+import { Course } from '@/typescript/interface';
+import { getCourse, getCourses } from '@/utils/coursesAPI';
 import React from 'react';
 
 export default async function CourseIDPage({
@@ -9,6 +11,10 @@ export default async function CourseIDPage({
 		courseID: string;
 	};
 }) {
+	const { courseID, departmentID } = params;
+
+	const courses: Course[] = await getCourse(courseID);
+
 	return (
 		<div>
 			<main>
@@ -19,7 +25,7 @@ export default async function CourseIDPage({
 						<div className='flex justify-between items-center'>
 							<div>
 								<h1 className='font-semibold text-2xl text-gray-900'>
-									Dashboard
+									Dashboard {courseID}
 								</h1>
 								<h3 className='text-sm  text-gray-700'>
 									{/* All Available Departments */}

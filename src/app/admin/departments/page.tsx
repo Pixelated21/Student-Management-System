@@ -4,6 +4,9 @@ import Statistic from '@/components/Statistics';
 import Link from 'next/link';
 import type { ILink, IStatistic, Department } from '@/typescript/interface';
 import { Cog8ToothIcon } from '@heroicons/react/24/outline';
+import { getDepartments } from '@/utils/departmentsAPI';
+
+export const dynamic = 'force-dynamic';
 
 export default async function DepartmentPage() {
 	const links: ILink[] = [
@@ -13,20 +16,9 @@ export default async function DepartmentPage() {
 
 	const statistics: IStatistic[] = [];
 
-	const getDepartments = async () => {
-		const res = await fetch('http://127.0.0.1:3000/api/departments');
-
-		if (!res) {
-			throw new Error('Failed To Fetch Department');
-		}
-
-		const respData = await res.json();
-		return respData.data;
-	};
-
 	const departments: Department[] = await getDepartments();
 
-	let filteredDepartments = departments.splice(0, 5);
+	let filteredDepartments = departments;
 
 	return (
 		<main className=''>

@@ -5,12 +5,7 @@ import { Cog8ToothIcon } from '@heroicons/react/24/outline';
 import { IStatistic } from '@/typescript/interface';
 
 export default async function AdminPage() {
-	const statistics: IStatistic[] = [
-		// { id: 1, title: 'Date', value: '20-14-22' },
-		// { id: 2, title: 'Prize Pool', value: '$18 500 830' },
-		// { id: 2, title: 'Type', value: 'Signapore Offline' },
-		// { id: 3, title: 'Organizers', value: 'Valve, PLG' },
-	];
+	const statistics: IStatistic[] = [];
 
 	return (
 		<main className=''>
@@ -19,8 +14,6 @@ export default async function AdminPage() {
 				<div className='max-w-7xl h-full  mx-auto'>
 					<div className='w-full flex h-full pt-5'>
 						<div className='flex flex-col justify-between w-5/6 '>
-							{/* {links.length ? <BreadCrumb links={links} /> : null} */}
-
 							<div>
 								<Spacer height='70px' />
 								<p className='text-5xl text-white'>

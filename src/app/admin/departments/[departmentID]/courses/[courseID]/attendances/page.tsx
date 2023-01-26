@@ -1,3 +1,5 @@
+import { Course } from '@/typescript/interface';
+import { getCourse, getCourses } from '@/utils/coursesAPI';
 import Spacer from 'src/components/Spacer';
 
 export default function DepartmentAttendancesPage() {

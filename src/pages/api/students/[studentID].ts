@@ -4,7 +4,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 const getStudent = async (
 	studentID: string | string[] | undefined,
 ): Promise<Student | undefined> => {
-	const res = await fetch('http://127.0.0.1:3000/api/students');
+	const res = await fetch('http://127.0.0.1:8000/api/students');
 	const students: Student[] = await res.json();
 	return students.find(student => student.id == studentID);
 };

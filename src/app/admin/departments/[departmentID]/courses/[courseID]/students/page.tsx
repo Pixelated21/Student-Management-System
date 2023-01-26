@@ -1,18 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
+import { getCourse, getCourses } from '@/utils/coursesAPI';
 import Spacer from 'src/components/Spacer';
 import type { Course, Student } from 'src/typescript/interface';
-
-// TODO: change to internal api
-const getCourse = async (courseID: string) => {
-	const res = await fetch(`http://127.0.0.1:8000/api/courses/${courseID}`);
-
-	if (!res) {
-		throw new Error('Failed To Fetch Students');
-	}
-
-	const respData = await res.json();
-	return respData.data;
-};
 
 export default async function DepartmentStudentsPage({
 	params,
