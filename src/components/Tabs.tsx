@@ -2,7 +2,6 @@
 import { ITab } from '@/typescript/interface';
 import Link from 'next/link';
 import { useSelectedLayoutSegment } from 'next/navigation';
-import { useState } from 'react';
 
 export default function Tabs({ data }: { data: ITab[] }) {
 	const segment = useSelectedLayoutSegment();
